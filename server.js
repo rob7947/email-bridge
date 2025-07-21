@@ -49,4 +49,10 @@ app.get("/inbox", (req, res) => {
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
 });
-use environment variables for IMAP connection
+const imap = new Imap({
+  user: process.env.IMAP_USER,
+  password: process.env.IMAP_PASSWORD,
+  host: process.env.IMAP_HOST,
+  port: parseInt(process.env.IMAP_PORT),
+  tls: process.env.IMAP_TLS === "true"
+});
